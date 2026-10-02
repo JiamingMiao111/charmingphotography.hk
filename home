@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charming Photography | Portfolio & Studio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#D4AF37',
+                            softGold: '#E6CA65',
+                            dark: '#0d0d0f',
+                            cardDark: '#16161a',
+                            lightBg: '#faf9f6',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Smooth Scrollbar & Glassmorphism */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d0d0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+        .glass-nav {
+            background: rgba(13, 13, 15, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .image-zoom-container {
+            overflow: hidden;
+        }
+        .image-zoom-container img {
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .image-zoom-container:hover img {
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-gray-200 font-sans antialiased selection:bg-brand-gold selection:text-black">
+
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-white/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <i class="fa-solid me-2 fa-camera-retro text-brand-gold text-2xl group-hover:rotate-12 transition-transform duration-300"></i>
+                <span class="font-serif text-2xl tracking-wider text-white font-light">CHARMING <span class="text-brand-gold font-normal">STUDIO</span></span>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center space-x-8 text-sm uppercase tracking-widest text-gray-300 font-light">
+                <a href="#about" class="hover:text-brand-gold transition-colors">About</a>
+                <a href="#portfolio" class="hover:text-brand-gold transition-colors">Portfolio</a>
+                <a href="#services" class="hover:text-brand-gold transition-colors">Services</a>
+                <a href="#testimonials" class="hover:text-brand-gold transition-colors">Stories</a>
+                <a href="#contact" class="px-5 py-2.5 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition-all duration-300 rounded-full text-xs font-semibold">Book A Session</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-gray-300 focus:outline-none hover:text-brand-gold" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark/95 border-b border-white/10 px-6 py-6 space-y-4 text-center tracking-widest text-sm uppercase font-light">
+            <a href="#about" class="block py-2 hover:text-brand-gold">About</a>
+            <a href="#portfolio" class="block py-2 hover:text-brand-gold">Portfolio</a>
+            <a href="#services" class="block py-2 hover:text-brand-gold">Services</a>
+            <a href="#testimonials" class="block py-2 hover:text-brand-gold">Stories</a>
+            <a href="#contact" class="inline-block mt-2 px-6 py-2.5 border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black rounded-full text-xs font-semibold">Book A Session</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Overlay Banner -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=2000&q=80" 
+                 alt="Camera Lens Background" 
+                 class="w-full h-full object-cover opacity-25 filter brightness-75 scale-105 animate-pulse"
+                 style="animation-duration: 12s;">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/60 to-transparent"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 max-w-4xl mx-auto text-center px-6 py-12">
+            <p class="text-brand-gold uppercase tracking-[0.3em] text-xs md:text-sm font-semibold mb-4 animate-fade-in">
+                Capturing Timeless Moments & Emotion
+            </p>
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white font-light leading-tight mb-8">
+                Welcome to <br>
+                <span class="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-white via-brand-softGold to-brand-gold">
+                    Charming Photography!
+                </span>
+            </h1>
+            <p class="text-gray-400 text-base md:text-lg max-w-2xl mx-auto font-light leading-relaxed mb-10">
+                Where every frame tells a story of elegance, authenticity, and light. We transform dynamic raw moments into immortal visual masterpieces.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+                <a href="#portfolio" class="w-full sm:w-auto px-8 py-3.5 bg-brand-gold text-black font-medium tracking-wider uppercase text-xs rounded-full hover:bg-brand-softGold transition-all duration-300 shadow-lg shadow-brand-gold/20 flex items-center justify-center gap-2 group">
+                    Explore Gallery
+                    <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#about" class="w-full sm:w-auto px-8 py-3.5 border border-white/20 text-white font-light tracking-wider uppercase text-xs rounded-full hover:bg-white/10 transition-all duration-300">
+                    Discover Our Story
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-center opacity-70 hover:opacity-100 transition-opacity">
+            <a href="#about" class="flex flex-col items-center text-xs tracking-widest text-gray-400 uppercase gap-2">
+                <span>Scroll</span>
+                <i class="fa-solid fa-chevron-down animate-bounce text-brand-gold"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 px-6 max-w-7xl mx-auto relative">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Photographer Portrait -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-white/10 image-zoom-container">
+                    <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=1000&q=80" 
+                         alt="Photographer at work" 
+                         class="w-full h-[500px] object-cover">
+                </div>
+                <!-- Decorative Frame Accent -->
+                <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-brand-gold/30 rounded-2xl -z-0 hidden sm:block"></div>
+            </div>
+
+            <!-- Narrative Content -->
+            <div class="lg:col-span-7 lg:pl-8">
+                <span class="text-brand-gold text-xs font-semibold uppercase tracking-[0.2em] block mb-3">Our Philosophy</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-light mb-6">
+                    Crafting Visual Songs with Light & Shadow
+                </h2>
+                <p class="text-gray-400 font-light leading-relaxed mb-6">
+                    Founded in 2018, Charming Photography began with a singular passion: finding extraordinary beauty inside subtle, unscripted human moments. We believe a great photograph doesn't just record what something looked like—it preserves how it felt.
+                </p>
+                <p class="text-gray-400 font-light leading-relaxed mb-8">
+                    Whether capturing the quiet intimacy of portraits, breathtaking landscapes, dynamic fashion, or grand editorial celebrations, our approach is defined by patience, organic light, and meticulous creative composition.
+                </p>
+
+                <!-- Highlights Counter Grid -->
+                <div class="grid grid-cols-3 gap-6 pt-6 border-t border-white/10">
+                    <div>
+                        <span class="font-serif text-3xl md:text-4xl text-brand-gold block font-normal">8+</span>
+                        <span class="text-xs uppercase tracking-wider text-gray-400 font-light">Years Experience</span>
+                    </div>
+                    <div>
+                        <span class="font-serif text-3xl md:text-4xl text-brand-gold block font-normal">450+</span>
+                        <span class="text-xs uppercase tracking-wider text-gray-400 font-light">Sessions Shot</span>
+                    </div>
+                    <div>
+                        <span class="font-serif text-3xl md:text-4xl text-brand-gold block font-normal">18</span>
+                        <span class="text-xs uppercase tracking-wider text-gray-400 font-light">Global Awards</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="portfolio" class="py-24 bg-black/40 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-brand-gold text-xs font-semibold uppercase tracking-[0.2em] block mb-3">Curated Portfolio</span>
+                <h2 class="font-serif text-3xl md:text-5xl text-white font-light">Charming Gallery</h2>
+                <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-4"></div>
+            </div>
+
+            <!-- Filter Categories -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12 text-xs tracking-widest uppercase">
+                <button class="filter-btn active px-5 py-2 rounded-full border border-brand-gold bg-brand-gold text-black transition-all" data-filter="all">All Works</button>
+                <button class="filter-btn px-5 py-2 rounded-full border border-white/10 text-gray-300 hover:border-brand-gold transition-all" data-filter="portrait">Portraits</button>
+                <button class="filter-btn px-5 py-2 rounded-full border border-white/10 text-gray-300 hover:border-brand-gold transition-all" data-filter="landscape">Nature & Land</button>
+                <button class="filter-btn px-5 py-2 rounded-full border border-white/10 text-gray-300 hover:border-brand-gold transition-all" data-filter="editorial">Editorial</button>
+                <button class="filter-btn px-5 py-2 rounded-full border border-white/10 text-gray-300 hover:border-brand-gold transition-all" data-filter="wedding">Events & Love</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery-grid">
+                <!-- Item 1 -->
+                <div class="gallery-item portrait group cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80', 'Ethereal Soul', 'Portrait Series')">
+                    <div class="relative overflow-hidden rounded-xl glass-card image-zoom-container">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" alt="Portrait Photograph" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <span class="text-brand-gold text-xs uppercase tracking-widest">Portrait</span>
+                            <h3 class="font-serif text-2xl text-white">Ethereal Soul</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="gallery-item landscape group cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80', 'Alpine Whispers', 'Landscape Series')">
+                    <div class="relative overflow-hidden rounded-xl glass-card image-zoom-container">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Mountain Landscape" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <span class="text-brand-gold text-xs uppercase tracking-widest">Nature</span>
+                            <h3 class="font-serif text-2xl text-white">Alpine Whispers</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="gallery-item editorial group cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1200&q=80', 'High Fashion Dusk', 'Editorial Series')">
+                    <div class="relative overflow-hidden rounded-xl glass-card image-zoom-container">
+                        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=800&q=80" alt="Fashion Editorial" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <span class="text-brand-gold text-xs uppercase tracking-widest">Editorial</span>
+                            <h3 class="font-serif text-2xl text-white">High Fashion Dusk</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="gallery-item wedding group cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80', 'Golden Vows', 'Wedding Series')">
+                    <div class="relative overflow-hidden rounded-xl glass-card image-zoom-container">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Wedding Couple" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <span class="text-brand-gold text-xs uppercase tracking-widest">Events</span>
+                            <h3 class="font-serif text-2xl text-white">Golden Vows</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="gallery-item portrait group cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80', 'Urban Character', 'Portrait Series')">
+                    <div class="relative overflow-hidden rounded-xl glass-card image-zoom-container">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Portrait Man" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <span class="text-brand-gold text-xs uppercase tracking-widest">Portrait</span>
+                            <h3 class="font-serif text-2xl text-white">Urban Character</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="gallery-item landscape group cursor-pointer" onclick="openLightbox('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80', 'Mist & Pines', 'Landscape Series')">
+                    <div class="relative overflow-hidden rounded-xl glass-card image-zoom-container">
+                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Misty Forest" class="w-full h-80 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <span class="text-brand-gold text-xs uppercase tracking-widest">Nature</span>
+                            <h3 class="font-serif text-2xl text-white">Mist & Pines</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <span class="text-brand-gold text-xs font-semibold uppercase tracking-[0.2em] block mb-3">Bespoke Experience</span>
+            <h2 class="font-serif text-3xl md:text-5xl text-white font-light">Services & Packages</h2>
+            <p class="text-gray-400 font-light mt-4">Every package comes with high-resolution digital delivery, expert color grading, and personalized art direction.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Service Card 1 -->
+            <div class="glass-card p-8 rounded-2xl hover:border-brand-gold/50 transition-all duration-300 flex flex-col justify-between group">
+                <div>
+                    <div class="w-14 h-14 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold text-2xl mb-6 group-hover:bg-brand-gold group-hover:text-black transition-colors">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl text-white mb-2">Portrait Sessions</h3>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed mb-6">
+                        Designed for creative individuals, actors, branding sessions, or couples wanting striking contemporary portraits.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-3 font-light mb-8">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> 2 Hours Studio or Location</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> 25 Retouched High-Res Images</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Private Digital Gallery</li>
+                    </ul>
+                </div>
+                <div class="pt-6 border-t border-white/10 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400 block">Starting at</span>
+                        <span class="font-serif text-2xl text-brand-gold">$350</span>
+                    </div>
+                    <a href="#contact" class="text-xs uppercase tracking-wider text-white hover:text-brand-gold">Inquire <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Service Card 2 (Featured) -->
+            <div class="glass-card p-8 rounded-2xl border-brand-gold/60 relative flex flex-col justify-between group shadow-xl shadow-brand-gold/5 scale-105 my-2 md:my-0">
+                <span class="absolute -top-3 right-6 bg-brand-gold text-black text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-full">Most Popular</span>
+                <div>
+                    <div class="w-14 h-14 rounded-full bg-brand-gold flex items-center justify-center text-black text-2xl mb-6">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl text-white mb-2">Weddings & Love</h3>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed mb-6">
+                        Comprehensive documentary and editorial coverage for weddings, proposals, and intimate celebrations.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-3 font-light mb-8">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Up to 8 Hours Coverage</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Full High-Res Master Gallery</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Complimentary Engagement Mini</li>
+                    </ul>
+                </div>
+                <div class="pt-6 border-t border-white/10 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400 block">Starting at</span>
+                        <span class="font-serif text-2xl text-brand-gold">$1,800</span>
+                    </div>
+                    <a href="#contact" class="text-xs uppercase tracking-wider text-brand-gold hover:text-white">Inquire <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Service Card 3 -->
+            <div class="glass-card p-8 rounded-2xl hover:border-brand-gold/50 transition-all duration-300 flex flex-col justify-between group">
+                <div>
+                    <div class="w-14 h-14 rounded-full bg-brand-gold/10 flex items-center justify-center text-brand-gold text-2xl mb-6 group-hover:bg-brand-gold group-hover:text-black transition-colors">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl text-white mb-2">Commercial & Fashion</h3>
+                    <p class="text-gray-400 text-sm font-light leading-relaxed mb-6">
+                        High-impact visual content tailored for fashion brands, magazine editorials, and corporate lookbooks.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-3 font-light mb-8">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Full Day / Half Day Options</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> Commercial Licensing Included</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-gold"></i> On-Site Preview Monitor</li>
+                    </ul>
+                </div>
+                <div class="pt-6 border-t border-white/10 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400 block">Custom Quote</span>
+                        <span class="font-serif text-2xl text-brand-gold">Bespoke</span>
+                    </div>
+                    <a href="#contact" class="text-xs uppercase tracking-wider text-white hover:text-brand-gold">Inquire <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 bg-black/40 border-t border-white/5">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <span class="text-brand-gold text-xs font-semibold uppercase tracking-[0.2em] block mb-3">Kind Words</span>
+            <h2 class="font-serif text-3xl md:text-5xl text-white font-light mb-12">Client Experiences</h2>
+
+            <div class="glass-card p-8 md:p-12 rounded-3xl relative">
+                <i class="fa-solid fa-quote-left text-4xl text-brand-gold/20 absolute top-6 left-6"></i>
+                <p class="font-serif italic text-xl md:text-2xl text-gray-200 leading-relaxed mb-8">
+                    "Working with Charming Photography was one of the highlights of our wedding planning. They put us at total ease, captured moments we didn't even notice happening, and delivered photographs that look like art gallery prints."
+                </p>
+                <div class="flex items-center justify-center gap-4">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80" alt="Client portrait" class="w-12 h-12 rounded-full object-cover border border-brand-gold">
+                    <div class="text-left">
+                        <h4 class="text-white text-sm font-semibold">Sophia & Julian</h4>
+                        <span class="text-xs text-gray-400">Wedding Session in Tuscany</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- Contact Info -->
+            <div class="lg:col-span-5">
+                <span class="text-brand-gold text-xs font-semibold uppercase tracking-[0.2em] block mb-3">Get In Touch</span>
+                <h2 class="font-serif text-3xl md:text-5xl text-white font-light mb-6">Let's Create Something Charming Together</h2>
+                <p class="text-gray-400 font-light mb-8 leading-relaxed">
+                    Have a project in mind, want to book a photoshoot, or just want to chat about ideas? Drop us a note below and we'll get back to you within 24 hours.
+                </p>
+
+                <div class="space-y-6 text-sm font-light">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-brand-gold">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 text-xs block">Studio Location</span>
+                            <span class="text-white">742 Evergreen Avenue, New York, NY</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-brand-gold">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 text-xs block">Email Us</span>
+                            <span class="text-white">hello@charmingphotography.com</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-brand-gold">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 text-xs block">Call / WhatsApp</span>
+                            <span class="text-white">+1 (555) 234-5678</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Form -->
+            <div class="lg:col-span-7">
+                <form id="booking-form" onsubmit="handleFormSubmit(event)" class="glass-card p-8 md:p-10 rounded-2xl space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Your Name</label>
+                            <input type="text" required placeholder="Jane Doe" class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Email Address</label>
+                            <input type="email" required placeholder="jane@example.com" class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Session Type</label>
+                            <select class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors">
+                                <option class="bg-brand-dark">Portrait Session</option>
+                                <option class="bg-brand-dark">Wedding & Events</option>
+                                <option class="bg-brand-dark">Commercial & Fashion</option>
+                                <option class="bg-brand-dark">Other Project</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Target Date</label>
+                            <input type="date" class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Your Vision / Details</label>
+                        <textarea rows="4" required placeholder="Tell us about your ideas, location preferences, or questions..." class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-gold transition-colors"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 bg-brand-gold text-black font-semibold uppercase text-xs tracking-widest rounded-lg hover:bg-brand-softGold transition-all duration-300">
+                        Send Inquiry
+                    </button>
+                    
+                    <div id="form-alert" class="hidden p-4 rounded-lg bg-brand-gold/20 border border-brand-gold text-brand-gold text-center text-sm">
+                        Thank you! Your message has been sent successfully. We will reach out shortly!
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden items-center justify-center p-4 backdrop-blur-md" onclick="closeLightbox()">
+        <div class="relative max-w-4xl w-full" onclick="event.stopPropagation()">
+            <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white text-3xl hover:text-brand-gold focus:outline-none" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img id="lightbox-img" src="" alt="Enlarged view" class="w-full h-auto max-h-[80vh] object-contain rounded-lg border border-white/10">
+            <div class="mt-4 text-center">
+                <h3 id="lightbox-title" class="font-serif text-2xl text-white"></h3>
+                <p id="lightbox-subtitle" class="text-brand-gold text-xs tracking-widest uppercase mt-1"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-black py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-camera-retro text-brand-gold text-xl"></i>
+                <span class="font-serif text-xl tracking-wider text-white">CHARMING STUDIO</span>
+            </div>
+
+            <p class="text-xs text-gray-500 font-light">
+                &copy; 2026 Charming Photography Studio. All rights reserved.
+            </p>
+
+            <div class="flex items-center space-x-6 text-gray-400">
+                <a href="#" class="hover:text-brand-gold transition-colors"><i class="fa-brands fa-instagram text-lg"></i></a>
+                <a href="#" class="hover:text-brand-gold transition-colors"><i class="fa-brands fa-pinterest text-lg"></i></a>
+                <a href="#" class="hover:text-brand-gold transition-colors"><i class="fa-brands fa-facebook text-lg"></i></a>
+                <a href="#" class="hover:text-brand-gold transition-colors"><i class="fa-brands fa-twitter text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Mobile Navigation
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close Mobile Menu on Link Click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Gallery Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-gold', 'text-black', 'border-brand-gold');
+                    b.classList.add('text-gray-300', 'border-white/10');
+                });
+
+                btn.classList.add('bg-brand-gold', 'text-black', 'border-brand-gold');
+                btn.classList.remove('text-gray-300', 'border-white/10');
+
+                const filter = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox Functions
+        function openLightbox(src, title, subtitle) {
+            const lightbox = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-title').innerText = title;
+            document.getElementById('lightbox-subtitle').innerText = subtitle;
+            
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+        }
+
+        // Contact Form Submission Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('form-alert');
+            alertBox.classList.remove('hidden');
+            e.target.reset();
+
+            setTimeout(() => {
+                alertBox.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
